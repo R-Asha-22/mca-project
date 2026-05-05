@@ -30,5 +30,5 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 await DbSeeder.SeedAsync(app.Services);
-
+app.Urls.Add("http://0.0.0.0:10000");
 app.Run();
