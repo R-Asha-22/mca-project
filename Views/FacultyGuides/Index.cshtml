@@ -1,0 +1,39 @@
+@model IEnumerable<FacultyGuide>
+
+@{
+    ViewData["Title"] = "Faculty Guides";
+}
+
+<div class="page-title-row">
+    <div>
+        <h1>Faculty Guides</h1>
+        <p>Guide details and project allocation count.</p>
+    </div>
+    <a class="btn btn-primary" asp-action="Create">Add Guide</a>
+</div>
+
+<div class="content-panel">
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Specialization</th>
+                    <th>Projects</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var guide in Model)
+                {
+                    <tr>
+                        <td>@guide.Name</td>
+                        <td>@guide.Email</td>
+                        <td>@guide.Specialization</td>
+                        <td>@guide.ProjectSubmissions.Count</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

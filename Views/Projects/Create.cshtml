@@ -1,0 +1,12 @@
+@model ProjectSubmission
+
+@{
+    ViewData["Title"] = "Add Submission";
+}
+
+<h1>Add Project Submission</h1>
+<partial name="_ProjectForm" model="Model" />
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

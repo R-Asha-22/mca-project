@@ -1,0 +1,47 @@
+@model ProjectSubmission
+
+<form asp-action="@ViewContext.RouteData.Values["action"]" method="post" class="form-panel">
+    <input type="hidden" asp-for="Id" />
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row g-3">
+        <div class="col-md-6">
+            <label asp-for="StudentId" class="form-label"></label>
+            <select asp-for="StudentId" class="form-select" asp-items="ViewBag.StudentId"></select>
+            <span asp-validation-for="StudentId" class="text-danger"></span>
+        </div>
+        <div class="col-md-6">
+            <label asp-for="FacultyGuideId" class="form-label"></label>
+            <select asp-for="FacultyGuideId" class="form-select" asp-items="ViewBag.FacultyGuideId"></select>
+            <span asp-validation-for="FacultyGuideId" class="text-danger"></span>
+        </div>
+        <div class="col-md-8">
+            <label asp-for="ProjectTitle" class="form-label"></label>
+            <input asp-for="ProjectTitle" class="form-control" />
+            <span asp-validation-for="ProjectTitle" class="text-danger"></span>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="Category" class="form-label"></label>
+            <select asp-for="Category" class="form-select" asp-items="ViewBag.CategoryList"></select>
+            <span asp-validation-for="Category" class="text-danger"></span>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="Status" class="form-label"></label>
+            <select asp-for="Status" class="form-select" asp-items="ViewBag.StatusList"></select>
+            <span asp-validation-for="Status" class="text-danger"></span>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="SubmissionDate" class="form-label"></label>
+            <input asp-for="SubmissionDate" class="form-control" />
+            <span asp-validation-for="SubmissionDate" class="text-danger"></span>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="Marks" class="form-label"></label>
+            <input asp-for="Marks" class="form-control" />
+            <span asp-validation-for="Marks" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-actions">
+        <button class="btn btn-primary" type="submit">Save</button>
+        <a class="btn btn-outline-secondary" asp-action="Index">Cancel</a>
+    </div>
+</form>

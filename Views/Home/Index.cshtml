@@ -1,0 +1,65 @@
+@model DashboardViewModel
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<section class="page-hero">
+    <div>
+        <p class="eyebrow">MCA Final Year Project</p>
+        <h1>Student Project Management System</h1>
+        <p>Manage students, faculty guides, project submissions, marks, and status tracking using ASP.NET Core MVC with SQLite database.</p>
+    </div>
+    <a class="btn btn-primary" asp-controller="Projects" asp-action="Create">Add Submission</a>
+</section>
+
+<div class="stats-grid">
+    <div class="stat-card">
+        <span>Total Students</span>
+        <strong>@Model.TotalStudents</strong>
+    </div>
+    <div class="stat-card">
+        <span>Faculty Guides</span>
+        <strong>@Model.TotalGuides</strong>
+    </div>
+    <div class="stat-card">
+        <span>Project Records</span>
+        <strong>@Model.TotalProjects</strong>
+    </div>
+    <div class="stat-card">
+        <span>Completed</span>
+        <strong>@Model.CompletedProjects</strong>
+    </div>
+</div>
+
+<div class="content-panel">
+    <div class="panel-heading">
+        <h2>Recent Submissions</h2>
+        <a asp-controller="Projects" asp-action="Index">View all</a>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
+            <thead>
+                <tr>
+                    <th>Project</th>
+                    <th>Student</th>
+                    <th>Guide</th>
+                    <th>Status</th>
+                    <th>Marks</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.RecentSubmissions)
+                {
+                    <tr>
+                        <td>@item.ProjectTitle</td>
+                        <td>@item.Student?.Name</td>
+                        <td>@item.FacultyGuide?.Name</td>
+                        <td><span class="badge text-bg-info">@item.Status</span></td>
+                        <td>@item.Marks</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

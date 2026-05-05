@@ -1,0 +1,58 @@
+@model IEnumerable<ProjectSubmission>
+
+@{
+    ViewData["Title"] = "Project Submissions";
+}
+
+<div class="page-title-row">
+    <div>
+        <h1>Project Submissions</h1>
+        <p>Track final year project title, guide, status, submission date, and marks.</p>
+    </div>
+    <a class="btn btn-primary" asp-action="Create">Add Submission</a>
+</div>
+
+<form class="search-bar" method="get">
+    <select class="form-select" name="status">
+        <option value="">All Status</option>
+        <option value="Submitted" selected="@(ViewData["Status"]?.ToString() == "Submitted")">Submitted</option>
+        <option value="Reviewed" selected="@(ViewData["Status"]?.ToString() == "Reviewed")">Reviewed</option>
+        <option value="Completed" selected="@(ViewData["Status"]?.ToString() == "Completed")">Completed</option>
+    </select>
+    <button class="btn btn-outline-primary" type="submit">Filter</button>
+</form>
+
+<div class="content-panel">
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
+            <thead>
+                <tr>
+                    <th>Project Title</th>
+                    <th>Student</th>
+                    <th>Guide</th>
+                    <th>Category</th>
+                    <th>Status</th>
+                    <th>Marks</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var project in Model)
+                {
+                    <tr>
+                        <td>@project.ProjectTitle</td>
+                        <td>@project.Student?.Name</td>
+                        <td>@project.FacultyGuide?.Name</td>
+                        <td>@project.Category</td>
+                        <td><span class="badge text-bg-info">@project.Status</span></td>
+                        <td>@project.Marks</td>
+                        <td class="text-end">
+                            <a class="btn btn-sm btn-outline-secondary" asp-action="Edit" asp-route-id="@project.Id">Edit</a>
+                            <a class="btn btn-sm btn-outline-danger" asp-action="Delete" asp-route-id="@project.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

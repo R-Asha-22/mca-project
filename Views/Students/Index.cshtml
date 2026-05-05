@@ -1,0 +1,51 @@
+@model IEnumerable<Student>
+
+@{
+    ViewData["Title"] = "Students";
+}
+
+<div class="page-title-row">
+    <div>
+        <h1>Students</h1>
+        <p>Maintain MCA student profile and register details.</p>
+    </div>
+    <a class="btn btn-primary" asp-action="Create">Add Student</a>
+</div>
+
+<form class="search-bar" method="get">
+    <input class="form-control" type="search" name="search" value="@ViewData["Search"]" placeholder="Search name, register number, or email" />
+    <button class="btn btn-outline-primary" type="submit">Search</button>
+</form>
+
+<div class="content-panel">
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Register No</th>
+                    <th>Email</th>
+                    <th>Semester</th>
+                    <th>Phone</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var student in Model)
+                {
+                    <tr>
+                        <td>@student.Name</td>
+                        <td>@student.RegisterNumber</td>
+                        <td>@student.Email</td>
+                        <td>@student.Semester</td>
+                        <td>@student.Phone</td>
+                        <td class="text-end">
+                            <a class="btn btn-sm btn-outline-secondary" asp-action="Edit" asp-route-id="@student.Id">Edit</a>
+                            <a class="btn btn-sm btn-outline-danger" asp-action="Delete" asp-route-id="@student.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
